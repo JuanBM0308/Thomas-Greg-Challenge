@@ -81,6 +81,17 @@ public class OrderController {
 
                 for (ProductDto productDto : body.getProducts()) {
                     Product product = this.productService.findById(productDto.getId()).orElseThrow();
+
+                    Long oldStock = product.getStock();
+                    Long quantity = productDto.getQuantity();
+                    Long newStock = orderSaved.isOutbound() ? oldStock - quantity : oldStock + quantity;
+
+                    if (newStock < 0) {
+                        return new ResponseEntity<>(new ResponseDto(false, "Stock insuficiente!", null), HttpStatus.BAD_REQUEST);
+                    }
+                    product.setStock(newStock);
+                    this.productService.save(product);
+
                     OrderProduct orderProduct = OrderProduct.builder()
                             .order(orderSaved)
                             .product(product)

@@ -13,4 +13,6 @@ public interface ProductService {
     List<Product> getAll();
 
     Optional<Product> findById(Long id);
+
+    Product save(Product product);
 }

@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "orden")
+@Table(name = "orden_producto")
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,11 @@ public class OrderProduct {
     @Column(name = "creado_en")
     private Date createdAt;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "orden_id", referencedColumnName = "id")
     private Order order;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "producto_id", referencedColumnName = "id")
     private Product product;
 

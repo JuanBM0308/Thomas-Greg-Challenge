@@ -47,4 +47,8 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Product> findById(Long id) {
         return this.productRepository.findById(id);
     }
+
+    public Product save(Product product) {
+        return this.productRepository.save(product);
+    }
 }
