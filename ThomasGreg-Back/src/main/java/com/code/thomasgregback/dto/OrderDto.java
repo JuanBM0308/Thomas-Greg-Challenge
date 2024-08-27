@@ -1,11 +1,9 @@
 package com.code.thomasgregback.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,4 +22,9 @@ public class OrderDto {
     private String completeNameCustomer;
     private Long user;
     private String completeName;
+
+    @Singular
+    private List<ProductDto> products;
+
+    private Integer countProducts;
 }

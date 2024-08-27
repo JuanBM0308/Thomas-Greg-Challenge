@@ -107,4 +107,8 @@ public class OrderServiceImpl implements OrderService {
 
         return orderDetailsDtos;
     }
+
+    public Order save(Order order) {
+        return this.orderRepository.save(order);
+    }
 }

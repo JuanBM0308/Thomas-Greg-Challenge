@@ -2,6 +2,7 @@ package com.code.thomasgregback.service.customer;
 
 import com.code.thomasgregback.dto.reports.TopFiveCustomersDto;
 import com.code.thomasgregback.dto.reports.TopFiveProductsDto;
+import com.code.thomasgregback.entity.Customer;
 import com.code.thomasgregback.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,5 +37,9 @@ public class CustomerServiceImpl implements CustomerService{
         }
 
         return topFiveCustomersDtos;
+    }
+
+    public Optional<Customer> getById(Long id) {
+        return this.customerRepository.findById(id);
     }
 }

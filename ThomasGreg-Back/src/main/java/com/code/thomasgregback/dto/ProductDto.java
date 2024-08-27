@@ -21,4 +21,7 @@ public class ProductDto {
     private String name;
     private Long stock;
     private boolean active;
+
+    private Long quantity;
+    private Long unitPrice;
 }
