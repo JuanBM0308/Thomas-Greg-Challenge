@@ -16,20 +16,9 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
-  login(body: any): boolean {
-    if (body.mail === 'Example@example.com' && body.password === 'Secure2024') {
-      this.isAuthenticated = true;
-      this.router.navigate(['/home']);
-      return true;
-    }
-    return false;
-  }
-
-  
-  /*login(body: { mail: string; password: string }): Observable<boolean> {
+  login(body: any): Observable<boolean> {
     return this.http.post<any>(`${this.baseUrl}/login`, body).pipe(
       map(res => {
-        console.log('Inicio usuario ', res);
         if (res.status) {
           this.isAuthenticated = true;
           this.router.navigate(['/home']);
@@ -45,7 +34,6 @@ export class AuthService {
       })
     );
   }
-  */
 
   isLoggedIn(): boolean {
     return this.isAuthenticated;

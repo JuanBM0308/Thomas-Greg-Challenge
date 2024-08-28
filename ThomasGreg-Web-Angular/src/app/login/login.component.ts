@@ -34,8 +34,12 @@ export class LoginComponent implements OnInit {
       password: formValue.password,
     };
 
-    if (!this.authService.login(body)) {
-      alert('Credenciales inválidas');
-    }
+    this.authService.login(body).subscribe((res) => {
+      if (!res) {
+        alert('Credenciales inválidas');
+      }
+    }, (error) => {
+      console.log(error);
+    }); 
   }
 }

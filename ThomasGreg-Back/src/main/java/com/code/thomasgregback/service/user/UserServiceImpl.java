@@ -3,6 +3,7 @@ package com.code.thomasgregback.service.user;
 import com.code.thomasgregback.entity.User;
 import com.code.thomasgregback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> getAll() {
-        return this.userRepository.findAll();
+        return this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     public boolean existsByMailAndPassword(String mail, String password) {
