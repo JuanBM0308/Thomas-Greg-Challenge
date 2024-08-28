@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/thomasgreg/user")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
     private UserService userService;
     private RoleService roleService;
@@ -85,10 +86,6 @@ public class UserController {
             if (!this.userService.existsById(id))
                 return new ResponseEntity<>(new ResponseDto(false, "¡Este usuario no existe!", null), HttpStatus.NOT_ACCEPTABLE);
 
-            String mail = body.getMail();
-            if (this.userService.existsByMail(mail))
-                return new ResponseEntity<>(new ResponseDto(false, "¡Este correo ya existe!", null), HttpStatus.NOT_ACCEPTABLE);
-
             User user = User.builder()
                     .id(id)
                     .name(body.getName())
@@ -117,6 +114,20 @@ public class UserController {
             return new ResponseEntity<>(new ResponseDto(true, "Usuario eliminado con exito!", null), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ResponseDto(false, "Error al eliminar usuario!", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/get/by/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        try {
+            if (!this.userService.existsById(id))
+                return new ResponseEntity<>(new ResponseDto(false, "¡Este usuario no existe!", null), HttpStatus.NOT_ACCEPTABLE);
+
+            User user = this.userService.findById(id).orElseThrow();
+
+            return new ResponseEntity<>(new ResponseDto(true, "Usuario encotrado con exito!", user), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ResponseDto(false, "Error al buscar el usuario!", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

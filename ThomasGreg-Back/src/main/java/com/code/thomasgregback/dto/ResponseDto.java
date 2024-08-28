@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResponseDto {
     private Boolean status;
-    private String datail;
+    private String detail;
     private Object response;
 }

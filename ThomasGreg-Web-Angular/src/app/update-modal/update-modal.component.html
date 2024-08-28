@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Actualizar Registro</h1>
+<div mat-dialog-content>
+    <form [formGroup]="updateForm">
+        <mat-form-field>
+            <input matInput placeholder="Nombre" formControlName="name" />
+            <mat-error *ngIf="updateForm.get('name')?.hasError('required')">
+                Este campo es requerido.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Apellido" formControlName="lastname" />
+            <mat-error *ngIf="updateForm.get('lastname')?.hasError('required')">
+                Este campo es requerido.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Correo" formControlName="mail" />
+            <mat-error *ngIf="updateForm.get('mail')?.hasError('required')">
+                Este campo es requerido.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Contrasenia" formControlName="password" />
+            <mat-error *ngIf="updateForm.get('password')?.hasError('required')">
+                Este campo es requerido.
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button (click)="updateUser()" [disabled]="!updateForm.valid">Editar</button>
+</div>

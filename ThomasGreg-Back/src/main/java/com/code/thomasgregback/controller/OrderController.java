@@ -21,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/thomasgreg/order")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class OrderController {
     private OrderService orderService;
     private CustomerService customerService;

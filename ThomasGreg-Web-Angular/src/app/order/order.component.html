@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <h4 class="text-center">Productos con Descuentos</h4>
+        <span>a. Dado un rango de tiempo parametrizado todas las ordenes realizadas tendrán un descuento de 10%</span>
+        <span>b. De seleccionarse la función de pedido aleatorio, se debe brindar un descuento del 50 % (los sescuentos solo aplicaran si la orden queda registrada dentro del rango de tiempo definido)</span> 
+        <span>c. De ser un cliente frecuente se le otorgará un descuento adicional del 5%</span>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Número</th>
+                    <th>Electrónico</th>
+                    <th>Tipo</th>
+                    <th>Aleatorio</th>
+                    <th>Total</th>
+                    <th>Descuento</th>
+                    <th>Cliente</th>
+                    <th>Responsable</th>
+                    <th>Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of discountsList">
+                    <td>{{ item.createdAt | date: 'MMMM d, y, h:mm a' }}</td>
+                    <td>{{ item.number }}</td>
+                    <td *ngIf="item.ecommerce" 
+                        style="background-color: greenyellow; color: white; text-align: center;">Si</td>
+                    <td *ngIf="!item.ecommerce"
+                        style="background-color: red; color: white; text-align: center;">No</td>
+                    <td *ngIf="item.outbound" 
+                        style="background-color: blue; color: white; text-align: center;">Saliente</td>
+                    <td *ngIf="!item.outbound"
+                        style="background-color: purple; color: white; text-align: center;">Entrante</td>
+                    <td *ngIf="item.random" 
+                        style="background-color: greenyellow; color: white; text-align: center;">Si</td>
+                    <td *ngIf="!item.random"
+                        style="background-color: red; color: white; text-align: center;">No</td>
+                    <td>{{ item.total | currency:'COP':'symbol':'1.2-2' }}</td>
+                    <td>{{ item.totalWithDiscount | currency:'COP':'symbol':'1.2-2' }}</td>
+                    <td>{{ item.completeNameCustomer }}</td>
+                    <td>{{ item.completeName }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" (click)="openOrderModal(item.id)">Ver</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

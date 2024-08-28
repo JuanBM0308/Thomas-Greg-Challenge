@@ -29,8 +29,8 @@ public class CustomerServiceImpl implements CustomerService{
         for (Object[] result : queryResults) {
             TopFiveCustomersDto topFiveCustomersDto = TopFiveCustomersDto.builder()
                     .id(Long.parseLong(result[0].toString()))
-                    .name(result[1].toString())
-                    .total(Long.parseLong(result[2].toString()))
+                    .name(result[1].toString() + " " + result[2].toString())
+                    .total(Long.parseLong(result[3].toString()))
                     .build();
 
             topFiveCustomersDtos.add(topFiveCustomersDto);

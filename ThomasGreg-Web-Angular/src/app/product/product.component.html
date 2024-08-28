@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <h4 class="text-center">Productos de la TIenda</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Producto</th>
+                    <th>Marca</th>
+                    <th colspan="2">Existencias</th>
+                    <th>Precio de Venta</th>
+                    <th>Precio de Compra</th>                    
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of productsList">
+                    <td>{{ item.createdAt | date: 'MMMM d, y, h:mm a' }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.mark.name }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td *ngIf="item.stock < 10" 
+                        style="background-color: red; color: white; text-align: center;">Baja</td>
+                    <td *ngIf="item.stock >= 10 && item.stock < 60" 
+                        style="background-color: orange; color: white; text-align: center;">Media</td>
+                    <td *ngIf="item.stock >= 60" 
+                        style="background-color: greenyellow; color: white; text-align: center;">Alta</td>
+
+                    <td>{{ item.purchasePrice | currency:'COP':'symbol':'1.2-2' }}</td>
+                    <td>{{ item.salePrice | currency:'COP':'symbol':'1.2-2' }}</td>                    
+                    <td *ngIf="item.active" 
+                        style="background-color: greenyellow; color: white; text-align: center;">Activo</td>
+                    <td *ngIf="!item.active" 
+                        style="background-color: red; color: white; text-align: center;">Inactivo</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

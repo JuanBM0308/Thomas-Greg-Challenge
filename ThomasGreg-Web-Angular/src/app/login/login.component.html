@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h4 class="text-center">Bienvenido a Thomas Greg</h4>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="form-group">
+                    <label for="mail">Correo electrónico:</label>
+                    <input type="text" id="mail" class="form-control" formControlName="mail"
+                        [ngClass]="{ 'is-invalid': submittedLoginForm && loginForm.controls['mail'].errors }"
+                        placeholder="Ingresar correo" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" class="form-control" formControlName="password"
+                        [ngClass]="{ 'is-invalid': submittedLoginForm && loginForm.controls['password'].errors }"
+                        placeholder="Ingresar correo" />
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <h4 class="text-center">Reporte de Productos Activos</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Producto</th>
+                    <th>Marca</th>
+                    <th>Precio de Venta</th>
+                    <th>Precio de Compra</th>
+                    <th>Existencias</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of report1">
+                    <td>{{ item.createdAt | date: 'MMMM d, y, h:mm a' }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.mark.name }}</td>
+                    <td>{{ item.purchasePrice }}</td>
+                    <td>{{ item.salePrice }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td *ngIf="item.active" style="background-color: greenyellow; color: white; text-align: center;">
+                        Activo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="col-6">
+            <div class="container mt-5">
+                <h4 class="text-center">Los 5 Productos más Vendidos</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Total Und. de Ventas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of report2">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="container mt-5">
+                <h4 class="text-center">Los 5 Clientes más Frecuentes</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Total Und. de Compras</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of report3">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
